@@ -56,6 +56,9 @@
 
   // Note: For platformio prioritize this file over the one in BSP in all cases
 
+#elif defined(ARDUINO_TEENSY40) || defined(ARDUINO_TEENSY41)
+  #include "arduino/ports/teensy4/tusb_config_teensy4.h"
+
 #else
   #error TinyUSB Arduino Library does not support your core yet
 #endif
