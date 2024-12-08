@@ -210,12 +210,12 @@ bool tu_edpt_validate(tusb_desc_endpoint_t const* desc_ep, tusb_speed_t speed) {
         TU_ASSERT(max_packet_size == 512);
       } else {
         // TODO Bulk fullspeed can only be 8, 16, 32, 64
-        TU_ASSERT(max_packet_size <= 64);
+        TU_ASSERT(max_packet_size <= CFG_ENDPOINT_FS_MAX_PACKET_SIZE);
       }
       break;
 
     case TUSB_XFER_INTERRUPT: {
-      uint16_t const spec_size = (speed == TUSB_SPEED_HIGH ? 1024 : 64);
+      uint16_t const spec_size = (speed == TUSB_SPEED_HIGH ? 1024 : CFG_ENDPOINT_FS_MAX_PACKET_SIZE);
       TU_ASSERT(max_packet_size <= spec_size);
       break;
     }

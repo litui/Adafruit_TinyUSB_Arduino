@@ -144,6 +144,8 @@ void Adafruit_USBH_Host::task(uint32_t timeout_ms, bool in_isr) {
   tuh_task_ext(timeout_ms, in_isr);
 }
 
+#if CFG_ADAFRUIT_NO_WEAK_USBH_DEFS == 0
+
 // Invoked when device with hid interface is mounted
 // Report descriptor is also available for use.
 // tuh_hid_parse_report_descriptor() can be used to parse common/simple enough
@@ -173,6 +175,8 @@ TU_ATTR_WEAK void tuh_hid_report_received_cb(uint8_t dev_addr, uint8_t instance,
   (void)report;
   (void)len;
 }
+
+#endif
 
 //--------------------------------------------------------------------+
 // USB Host using MAX3421E

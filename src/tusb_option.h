@@ -588,8 +588,25 @@
 #endif
 
 //------------------------------------------------------------------
+// Hacks
+//------------------------------------------------------------------
+
+// Accommodation for bad High Speed implementations that don't limit
+// packet size when on a Full Speed bus.
+#ifndef CFG_ENDPOINT_FS_MAX_PACKET_SIZE
+#define CFG_ENDPOINT_FS_MAX_PACKET_SIZE 64
+#endif
+
+// Accommodation removal of weak definitions in
+// Adafruit_USBH_Host.cpp that can't be overridden easily
+#ifndef CFG_ADAFRUIT_NO_WEAK_USBH_DEFS
+#define CFG_ADAFRUIT_NO_WEAK_USBH_DEFS 0
+#endif
+
+//------------------------------------------------------------------
 // Configuration Validation
 //------------------------------------------------------------------
+
 #if CFG_TUD_ENDPOINT0_SIZE > 64
   #error Control Endpoint Max Packet Size cannot be larger than 64
 #endif
